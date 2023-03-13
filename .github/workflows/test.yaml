@@ -10,8 +10,6 @@ branches:
 
 jobs:
 
-name: ESLint Test
-
 run: npm run lint
 
 runs-on: ubuntu-latest
