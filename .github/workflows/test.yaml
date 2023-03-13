@@ -1,0 +1,31 @@
+name: RecitationTest
+
+on:
+
+push:
+
+branches:
+
+- main
+
+jobs:
+
+name: ESLint Test
+
+run: npm run lint
+
+runs-on: ubuntu-latest
+
+name: RepoTest
+
+run: npm run test
+
+steps:
+
+- uses: actions/checkout@v3
+
+- uses: bahmutov/npm-install@v1
+
+- run: npm run __BLANK 4__ (Run ESLint)
+
+- run: __BLANK 5__ (Run Jest)
