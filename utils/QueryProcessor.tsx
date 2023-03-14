@@ -1,3 +1,18 @@
+function calculateSum(input: string): number {
+  const regex = /(\d+)\s*\+\s*(\d+)/; // Regular expression to match "number + number" pattern
+  const match = input.match(regex); // Try to match the input string with the regex
+
+  if (!match) {
+    throw new Error('Invalid input format. Expected "number + number".');
+  }
+
+  const num1 = Number(match[1]); // Extract the first number from the match and convert it to a number
+  const num2 = Number(match[2]); // Extract the second number from the match and convert it to a number
+  const sum = num1 + num2; // Calculate the sum of the two numbers
+
+  return sum;
+}
+
 export default function QueryProcessor(query: string): string {
   console.log(query);
   if (query.toLowerCase().includes("what is your name?")) {
@@ -41,7 +56,10 @@ export default function QueryProcessor(query: string): string {
       res.toString()
     );
   }
-
+  else if(query.includes("plus")) {
+    const res = calculateSum(query);
+    return (res.toString());
+  }
 
   return "";
 }
