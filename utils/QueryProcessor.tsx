@@ -1,5 +1,5 @@
 function calculateSum(input: string): number {
-  const regex = /(\d+)\s*\+\s*(\d+)/; // Regular expression to match "number + number" pattern
+  const regex = /(\d+)\s*\ plus \s*(\d+)/; // Regular expression to match "number + number" pattern
   const match = input.match(regex); // Try to match the input string with the regex
 
   if (!match) {
@@ -11,6 +11,22 @@ function calculateSum(input: string): number {
   const sum = num1 + num2; // Calculate the sum of the two numbers
 
   return sum;
+}
+
+function findMaxNumber(input: string): number {
+  const regex = /(\d+),\s*(\d+),\s*(\d+)/; // Regular expression to match "number, number, number" pattern
+  const match = input.match(regex); // Try to match the input string with the regex
+
+  if (!match) {
+    throw new Error('Invalid input format. Expected "number, number, number".');
+  }
+
+  const num1 = Number(match[1]); // Extract the first number from the match and convert it to a number
+  const num2 = Number(match[2]); // Extract the second number from the match and convert it to a number
+  const num3 = Number(match[3]); // Extract the third number from the match and convert it to a number
+  const max = Math.max(num1, num2, num3); // Calculate the maximum of the three numbers
+
+  return max;
 }
 
 export default function QueryProcessor(query: string): string {
