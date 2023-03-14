@@ -34,6 +34,8 @@ export default function QueryProcessor(query: string): string {
     const num1 = parseInt(n1.substring(0,n1.length-1));
     const num2 = parseInt(n2.substring(0,n2.length-1));
     const num3 = parseInt(n3.substring(0,n3.length-1));
+    console.log(num1);
+    console.log(num2);
     const res = Math.max(num1,num2,num3);
     return (
       res.toString()
