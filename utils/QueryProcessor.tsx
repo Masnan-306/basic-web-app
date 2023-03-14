@@ -60,6 +60,15 @@ export default function QueryProcessor(query: string): string {
         sum.toString()
     );
   }
+  else if (query.includes("minus")) {
+    var sum = numbers[0];
+    for(let i = 1; i < numbers.length; i++){
+        sum -= numbers[i];
+    }
+    return (
+        sum.toString()
+    );
+  }
   else if (query.includes("a square and a cube")) {
     return (
       (numbers.filter(isPerfectSixthPower)).toString()
