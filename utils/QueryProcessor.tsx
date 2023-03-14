@@ -25,6 +25,20 @@ export default function QueryProcessor(query: string): string {
       "99"
     );
   }
+  else if (query.toLowerCase().includes("which of the following numbers is the largest:")) {
+    const str = query.split(":")[1];
+    const n = str.split(" ");
+    const n1 = n[0];
+    const n2 = n[1];
+    const n3 = n[2];
+    const num1 = parseInt(n1.substring(0,n1.length-1));
+    const num2 = parseInt(n2.substring(0,n2.length-1));
+    const num3 = parseInt(n3.substring(0,n3.length-1));
+    const res = Math.max(num1,num2,num3);
+    return (
+      res.toString()
+    );
+  }
 
 
   return "";
