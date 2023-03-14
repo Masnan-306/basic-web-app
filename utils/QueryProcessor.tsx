@@ -2,11 +2,11 @@ function extractNumbers(input: string): number[] {
   const regex = /\d+/g; // Regular expression to match any sequence of digits
   const matches = input.match(regex); // Try to match the input string with the regex
 
-  if (!matches) {
-    throw new Error('No numbers found in input string.');
+  var numbers : number[] = []
+  
+  if (matches != null){
+    numbers = matches.map((match) => Number(match)); // Convert each match to a number
   }
-
-  const numbers = matches.map((match) => Number(match)); // Convert each match to a number
 
   return numbers;
 }
