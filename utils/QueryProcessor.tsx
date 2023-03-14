@@ -43,13 +43,21 @@ export default function QueryProcessor(query: string): string {
     );
   }
   else if (query.includes("plus")) {
+    var sum = 0;
+    for(let i = 0; i < numbers.length; i++){
+        sum += numbers[i];
+    }
     return (
-      (numbers[1] + numbers[0]).toString()
+        sum.toString()
     );
   }
   else if (query.includes("multiplied")) {
+    var sum = 0;
+    for(let i = 0; i < numbers.length; i++){
+        sum *= numbers[i];
+    }
     return (
-      (numbers[1] * numbers[0]).toString()
+        sum.toString()
     );
   }
   else if (query.includes("a square and a cube")) {
