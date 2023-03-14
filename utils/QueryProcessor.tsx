@@ -11,6 +11,29 @@ function extractNumbers(input: string): number[] {
   return numbers;
 }
 
+function isPrime(n: number): boolean {
+  if (n <= 1) {
+    return false; // 1 and below are not considered prime
+  }
+
+  if (n <= 3) {
+    return true; // 2 and 3 are prime
+  }
+
+  if (n % 2 === 0 || n % 3 === 0) {
+    return false; // Numbers divisible by 2 or 3 are not prime
+  }
+
+  // Check for divisibility by other numbers up to the square root of n
+  for (let i = 5; i * i <= n; i += 6) {
+    if (n % i === 0 || n % (i + 2) === 0) {
+      return false; // Numbers divisible by i or i + 2 are not prime
+    }
+  }
+
+  return true; // If no divisors are found, n is prime
+}
+
 function findMaxNumber(input: string): number {
   const regex = /(\d+),\s*(\d+),\s*(\d+)/; // Regular expression to match "number, number, number" pattern
   const match = input.match(regex); // Try to match the input string with the regex
@@ -69,6 +92,19 @@ export default function QueryProcessor(query: string): string {
         sum.toString()
     );
   }
+
+  else if (query.includes("prime")) {
+    var sum = 0;
+    for(let i = 0; i < numbers.length; i++){
+      if(isPrime(numbers[i])){
+        sum = numbers[i];
+      }  
+    }
+    return (
+        sum.toString()
+    );
+  }
+
   else if (query.includes("a square and a cube")) {
     return (
       (numbers.filter(isPerfectSixthPower)).toString()
