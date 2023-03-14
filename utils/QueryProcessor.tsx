@@ -1,31 +1,14 @@
-function calculateSum(input: string): number {
-  const regex = /(\d+)\s*\ plus \s*(\d+)/; // Regular expression to match "number + number" pattern
-  const match = input.match(regex); // Try to match the input string with the regex
+function extractNumbers(input: string): number[] {
+  const regex = /\d+/g; // Regular expression to match any sequence of digits
+  const matches = input.match(regex); // Try to match the input string with the regex
 
-  if (!match) {
-    throw new Error('Invalid input format. Expected "number + number".');
+  if (!matches) {
+    throw new Error('No numbers found in input string.');
   }
 
-  const num1 = Number(match[1]); // Extract the first number from the match and convert it to a number
-  const num2 = Number(match[2]); // Extract the second number from the match and convert it to a number
-  const sum = num1 + num2; // Calculate the sum of the two numbers
+  const numbers = matches.map((match) => Number(match)); // Convert each match to a number
 
-  return sum;
-}
-
-function calculateProduct(input: string): number {
-  const regex = /(\d+)\s*\ multiplied by \s*(\d+)/; // Regular expression to match "number + number" pattern
-  const match = input.match(regex); // Try to match the input string with the regex
-
-  if (!match) {
-    throw new Error('Invalid input format. Expected "number + number".');
-  }
-
-  const num1 = Number(match[1]); // Extract the first number from the match and convert it to a number
-  const num2 = Number(match[2]); // Extract the second number from the match and convert it to a number
-  const sum = num1 * num2; // Calculate the sum of the two numbers
-
-  return sum;
+  return numbers;
 }
 
 function findMaxNumber(input: string): number {
@@ -46,19 +29,20 @@ function findMaxNumber(input: string): number {
 
 export default function QueryProcessor(query: string): string {
   console.log(query);
+  const numbers = extractNumbers(query);
   if (query.toLowerCase().includes("what is your name?")) {
     return (
       "TeSam"
     );
   }
-  else if (query.toLowerCase().includes("which of the following numbers is the largest: 29, 75, 79?")) {
+  else if (query.toLowerCase().includes("plus")) {
     return (
-      "79"
+      (numbers[1] + numbers[0]).toString()
     );
   }
-  else if (query.toLowerCase().includes("what is 7 plus 36?")) {
+  else if (query.toLowerCase().includes("multiplied")) {
     return (
-      "43"
+      (numbers[1] * numbers[0]).toString()
     );
   }
   else if (query.toLowerCase().includes("what is 54 plus 94?")) {
