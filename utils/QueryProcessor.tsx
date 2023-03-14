@@ -65,12 +65,13 @@ export default function QueryProcessor(query: string): string {
       (numbers.filter(isPerfectSixthPower)).toString()
     );
   }
-  else if (query.toLowerCase().includes("which of the following numbers is the largest: 39, 99, 61?")) {
+  else if (query.toLowerCase().includes("largest")) {
+    var sum = Math.max(...numbers);
     return (
-      "99"
+        sum.toString()
     );
   }
-  else if (query.toLowerCase().includes("which of the following numbers is the largest:")) {
+  else if (query.toLowerCase().includes("the largest:")) {
     const str = query.split(":")[1];
     const n = str.split(" ");
     const n1 = n[0];
