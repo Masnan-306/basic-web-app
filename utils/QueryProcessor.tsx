@@ -27,6 +27,13 @@ function findMaxNumber(input: string): number {
   return max;
 }
 
+function isPerfectSixthPower(n: number): boolean {
+  const root = Math.round(Math.pow(n, 1/6)); // Calculate the sixth root of n and round to the nearest integer
+  const power = Math.pow(root, 6); // Calculate the sixth power of the rounded root
+
+  return n === power; // Return true if n is equal to the sixth power of the rounded root, false otherwise
+}
+
 export default function QueryProcessor(query: string): string {
   console.log(query);
   const numbers = extractNumbers(query);
@@ -35,19 +42,19 @@ export default function QueryProcessor(query: string): string {
       "TeSam"
     );
   }
-  else if (query.toLowerCase().includes("plus")) {
+  else if (query.includes("plus")) {
     return (
       (numbers[1] + numbers[0]).toString()
     );
   }
-  else if (query.toLowerCase().includes("multiplied")) {
+  else if (query.includes("multiplied")) {
     return (
       (numbers[1] * numbers[0]).toString()
     );
   }
-  else if (query.toLowerCase().includes("what is 54 plus 94?")) {
+  else if (query.includes("a square and a cube")) {
     return (
-      "148"
+      (numbers.filter(isPerfectSixthPower)).toString()
     );
   }
   else if (query.toLowerCase().includes("which of the following numbers is the largest: 39, 99, 61?")) {
@@ -70,15 +77,6 @@ export default function QueryProcessor(query: string): string {
     return (
       res.toString()
     );
-  }
-  else if(query.includes("plus")) {
-    const res = calculateSum(query);
-    return (res.toString());
-  }
-
-  else if(query.includes("mutiplied")) {
-    const res = calculateProduct(query);
-    return (res.toString());
   }
 
   return "";
